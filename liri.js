@@ -1,9 +1,17 @@
 require("dotenv").config();
 
-let request = require("request");
+///setting variables for the api calls///
 
-const moment = require("moment");
+var keys = require("./keys.js");
 
-const fs = require("fs");
+var Spotify = require("node-spotify-api");
 
-const keys = require("./keys");
+var axios = require("axios");
+
+var fs = require("fs");
+
+var moment = require("moment");
+
+///user inputs for liri///
+
+var inputCommand = process.argv[2];
