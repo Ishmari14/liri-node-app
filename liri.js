@@ -15,3 +15,5 @@ var moment = require("moment");
 ///user inputs for liri///
 
 var inputCommand = process.argv[2];
+
+var inputSearch = process.argv.slice(3).join(" ");
