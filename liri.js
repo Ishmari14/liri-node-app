@@ -4,6 +4,8 @@ require("dotenv").config();
 
 var keys = require("./keys.js");
 
+var Spotify = require('node-spotify-api')
+
 var spotify = new Spotify(keys.spotify);
 
 var axios = require("axios");
@@ -50,7 +52,35 @@ function runLiri(inputCommand, inputSearch) {
 
 ///Spotify API//
 
-function spotifyGet()
+function spotifyGet(nameSong) {
+
+    var spotify = new Spotify(keys.spotify);
+
+    spotify.search({ type: 'track', query: nameSong }, function (err, data) {
+        if (err)
+            return console.log('Error: ' + err);
+
+
+        console.log("-----------------------------------");
+        console.log("Artist(s): " + data.tracks.items[0].album.artists[0].name + "\r\n");
+        console.log("Song: " + data.tracks.items[0].name + "\r\n");
+        console.log("Album: " + data.tracks.items[0].album.name + "\r\n");
+        console.log("Preview: " + data.tracks.items[0].href + "\r\n");
+        console.log("-----------------------------------");
+
+        var songLog = "Spotify Song Log" + "\nArtist: " + data.track.items[0].name;
+
+        fs.appendFile("log.txt", songLog, function (err) {
+
+            if (err) throw err;
+        });
+
+    });
+
+};
+
+
+
 
 
 runLiri(inputCommand, inputSearch);
